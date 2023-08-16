@@ -21,3 +21,47 @@
 .create-btn{
     width: 50%;
 }
+
+.message-box{
+    border-color: black;
+    border-width: 5px;
+    border-style: solid;
+    border-radius: 10px;
+    background-color:beige;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+    align-items: stretch;
+}
+
+.messages{
+    overflow-y: scroll;
+    flex: 1;
+    width: 100%;
+}
+
+.inputs{
+    padding: 10px;
+    display: flex;
+}
+
+h2{
+    text-align: center;
+}
+
+#message{
+    flex: 1;
+    border-radius: 10px;
+    border-color: black;
+    border-width: 5px;
+    font-size: large;
+}
+
+#send-btn{
+    border-radius: 10px;
+    border-color: black;
+    border-width: 5px;
+    background-color: rgb(113, 113, 236);
+    font-size: large;
+}
