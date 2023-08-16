@@ -65,3 +65,17 @@ h2{
     background-color: rgb(113, 113, 236);
     font-size: large;
 }
+
+.text{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.muted{
+    font-size: 10px;
+    color: darkgrey;
+}

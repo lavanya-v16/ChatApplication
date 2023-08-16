@@ -2,7 +2,7 @@
 {% block content%}
 
 <div class="message-box">
-    <h2>Chat Room: {{room}}</h2>
+    <h2>Chat Room: {{code}}</h2>
     <div class="messages" id="messages"></div>
     <div class="inputs">
         <input type="text" rows="3" placeholder="Message" name="message" id="message" />
@@ -11,10 +11,39 @@
 </div>
 <script type="text/javascript">
     var socketio= io();
-    const sendMessage =() =>{
-        console.log("send")
+    const messages=document.getElementById("messages")
+    const createMessage=(name,msg) => {
+        const content= `
+        <div class="text">
+            <span>
+                <strong> ${name}</strong>:${msg}
+            </span>
+            <span class=muted>
+                ${new Date().toLocaleString()}
+            </span>
+        </div>
+        `
+        messages.innerHTML+=content;  //instead of messages word it displays the content
     };
+    socketio.on("message", (data)=>{
+        console.log(data.name)
+        createMessage(data.name,data.message);
+    });
 
+    const sendMessage =() =>{
+        const message= document.getElementById("message");
+        console.log(message)
+        if(message.value=="")return;
+        socketio.emit("message",{data:message.value});   //data:message.value stores the message, so const message gets all 
+        // the values stored inside the messages div ie, data=message
+        // emit sends data and on receives it and once on sends the data to createmessage, the message value is set to empty strings
+        message.value="";
+    };
 </script>
+{% for msg in message%}
+    <script type="text/javascript">
+        createMessage("{{msg.name}}","{{msg.message}}");
+    </script>
+{% endfor %}
 
 {% endblock %}
